@@ -1,12 +1,14 @@
 function Header() {
   return (
-    <header className="mb-6 border-b pb-4">
-      <h1 className="text-3xl font-bold text-blue-600 text-center">
-        Habit Tracker
-      </h1>
-      <p className="text-sm text-gray-500 text-center mt-1">
-        Track your daily goals and build healthy habits.
-      </p>
+    <header className="bg-gradient-to-r from-emerald-600 to-teal-500 text-white py-8 mb-6">
+      <div className="max-w-2xl mx-auto px-4 text-center">
+        <h1 className="text-4xl sm:text-5xl font-semibold tracking-tight">
+          Habit Tracker
+        </h1>
+        <p className="mt-2 text-base sm:text-lg text-zinc-200">
+          Build healthy routines – one day at a time.
+        </p>
+      </div>
     </header>
   );
 }

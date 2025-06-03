@@ -35,14 +35,14 @@ function HabitForm({ onAdd }) {
           placeholder="Add a new habit..."
           value={name}
           onChange={(e) => setName(e.target.value)}
-          className="flex-1 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="flex-1 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-1 focus:ring-teal-300"
         />
         <input
           type="number"
           min="1"
           value={goal}
           onChange={(e) => setGoal(e.target.value)}
-          className="w-28 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+          className="w-28 border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-1 focus:ring-teal-300"
         />
         <button
           type="submit"
@@ -50,7 +50,7 @@ function HabitForm({ onAdd }) {
           className={`px-6 py-2 rounded transition ${
             isDisabled
               ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-              : "bg-blue-600 text-white hover:bg-blue-700"
+              : "bg-teal-500 text-white hover:bg-teal-600"
           }`}
         >
           Add

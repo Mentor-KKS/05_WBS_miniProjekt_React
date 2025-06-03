@@ -3,12 +3,15 @@ import { SlTrash, SlRefresh } from "react-icons/sl";
 function HabitListItem({ habit, onUpdate, onDelete, onReset }) {
   const isComplete = habit.count >= habit.goal;
   const isAtZero = habit.count === 0;
+  const isStarted = habit.count > 0 && habit.count < habit.goal;
 
   return (
     <div
       className={`flex flex-col sm:flex-row items-start sm:items-center justify-between border rounded-lg px-4 py-3 ${
         isComplete
           ? "bg-green-100 border-green-400"
+          : isStarted
+          ? "bg-blue-50 border-blue-300"
           : "bg-white border-gray-300"
       }`}
     >
@@ -23,7 +26,7 @@ function HabitListItem({ habit, onUpdate, onDelete, onReset }) {
         <button
           onClick={() => onUpdate(habit.id, -1)}
           disabled={isAtZero}
-          className={`px-3 py-1 rounded-full transition ${
+          className={`px-3 py-1 rounded-full transition hover:scale-105 ${
             isAtZero
               ? "bg-gray-200 text-gray-500 cursor-not-allowed"
               : "bg-red-100 text-red-600 hover:bg-red-200"
@@ -35,7 +38,7 @@ function HabitListItem({ habit, onUpdate, onDelete, onReset }) {
         <button
           onClick={() => onUpdate(habit.id, 1)}
           disabled={isComplete}
-          className={`px-3 py-1 rounded-full transition ${
+          className={`px-3 py-1 rounded-full transition hover:scale-105 ${
             isComplete
               ? "bg-gray-300 text-gray-500 cursor-not-allowed"
               : "bg-green-100 text-green-600 hover:bg-green-200"
@@ -46,14 +49,14 @@ function HabitListItem({ habit, onUpdate, onDelete, onReset }) {
 
         <button
           onClick={() => onReset(habit.id)}
-          className="bg-yellow-100 text-yellow-700 px-2 py-2 rounded-full hover:bg-yellow-200"
+          className="bg-yellow-100 text-yellow-700 px-2 py-2 rounded-full hover:bg-yellow-200 hover:scale-105"
         >
           <SlRefresh />
         </button>
 
         <button
           onClick={() => onDelete(habit.id)}
-          className="bg-gray-300 text-white px-2 py-2 rounded-full hover:bg-red-400"
+          className="bg-gray-300 text-white px-2 py-2 rounded-full hover:bg-red-400 hover:scale-105"
         >
           <SlTrash />
         </button>
