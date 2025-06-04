@@ -23,7 +23,16 @@ function App() {
     const completed = habits.filter((h) => h.count >= h.goal).length;
 
     if (total > 0 && completed === total) {
-      toast("🎉 All habits completed!");
+      toast("🎉 All habits completed!", {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   }, [habits]);
 
