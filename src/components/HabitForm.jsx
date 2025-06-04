@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const generateId = () => Date.now();
 
@@ -22,6 +23,16 @@ function HabitForm({ onAdd }) {
     onAdd(newHabit);
     setName("");
     setGoal(1);
+    toast.success("Habit added!", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
   };
 
   return (

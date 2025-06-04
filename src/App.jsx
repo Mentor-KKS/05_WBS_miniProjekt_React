@@ -4,6 +4,9 @@ import HabitForm from "./components/HabitForm";
 import HabitList from "./components/HabitList";
 import ProgressActions from "./components/ProgressActions";
 import PresetHabits from "./components/PresetHabits";
+import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
+import ConfirmClearToast from "./components/ConfirmClearToast";
 
 function App() {
   const [habits, setHabits] = useState(() => {
@@ -13,6 +16,15 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem("habits", JSON.stringify(habits));
+  }, [habits]);
+
+  useEffect(() => {
+    const total = habits.length;
+    const completed = habits.filter((h) => h.count >= h.goal).length;
+
+    if (total > 0 && completed === total) {
+      toast("🎉 All habits completed!");
+    }
   }, [habits]);
 
   const addHabit = (habit) => {
@@ -29,6 +41,7 @@ function App() {
 
   const deleteHabit = (id) => {
     setHabits((prev) => prev.filter((h) => h.id !== id));
+    toast.info("Habit deleted.", { position: "top-right" });
   };
 
   const resetHabit = (id) => {
@@ -42,9 +55,26 @@ function App() {
   };
 
   const clearAllHabits = () => {
-    if (confirm("Are you sure you want to delete all habits?")) {
-      setHabits([]);
-    }
+    if (habits.length === 0) return;
+
+    toast(
+      ({ closeToast }) => (
+        <ConfirmClearToast
+          onConfirm={() => {
+            setHabits([]);
+            toast.info("All habits cleared.", { position: "top-right" });
+            closeToast();
+          }}
+          onCancel={closeToast}
+        />
+      ),
+      {
+        position: "top-center",
+        autoClose: false,
+        closeOnClick: false,
+        closeButton: false,
+      }
+    );
   };
 
   return (
@@ -65,6 +95,7 @@ function App() {
           onClearAll={clearAllHabits}
         />
       </div>
+      <ToastContainer position="top-center" autoClose={2000} theme="light" />
     </div>
   );
 }
