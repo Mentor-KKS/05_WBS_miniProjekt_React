@@ -4,7 +4,7 @@ function HabitList({ habits, onUpdate, onDelete, onReset }) {
   if (habits.length === 0) {
     return (
       <p className="text-gray-500 text-center mb-6">
-        No habits yet. Add one above.
+        No habits yet. Add your first habit above to get started!
       </p>
     );
   }

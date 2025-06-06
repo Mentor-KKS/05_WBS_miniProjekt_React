@@ -90,6 +90,11 @@ function App() {
     <div className="min-h-screen bg-gray-100 p-4 md:p-8">
       <div className="max-w-3xl mx-auto bg-white rounded-xl shadow-md p-6">
         <Header />
+        <ProgressActions
+          habits={habits}
+          onResetAll={resetAllHabits}
+          onClearAll={clearAllHabits}
+        />
         <HabitForm onAdd={addHabit} />
         <PresetHabits onAdd={addHabit} />
         <HabitList
@@ -97,11 +102,6 @@ function App() {
           onUpdate={updateHabit}
           onDelete={deleteHabit}
           onReset={resetHabit}
-        />
-        <ProgressActions
-          habits={habits}
-          onResetAll={resetAllHabits}
-          onClearAll={clearAllHabits}
         />
       </div>
       <ToastContainer position="top-center" autoClose={2000} theme="light" />
